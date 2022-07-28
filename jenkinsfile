@@ -1,0 +1,31 @@
+#!/usr/bin/env groovy
+
+pipeline() {
+  agent {
+    kubernetes {
+      yaml '''
+        apiVersion: v1
+        kind: Pod
+        spec:
+          containers:
+          - name: maven
+            image: jjefferyio/inbound-agent:v0.2
+            command:
+            - cat
+            tty: true
+        '''
+    }
+  }
+  
+  stages {
+    
+    stage("Build") {
+      steps {
+        container('maven') {
+
+          sh "/usr/bin/pack"
+        }
+      }
+    }
+  }
+}
