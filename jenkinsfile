@@ -23,7 +23,7 @@ pipeline() {
       steps {
         container('maven') {
 
-          sh "/usr/bin/pack"
+          sh "pack build test-java-maven-app --path . -v"
         }
       }
     }
