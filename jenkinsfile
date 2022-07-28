@@ -9,7 +9,7 @@ pipeline() {
         spec:
           containers:
           - name: maven
-            image: jjefferyio/inbound-agent:v0.2
+            image: buildpacksio/pack:latest
             command:
             - cat
             tty: true
